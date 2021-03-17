@@ -198,7 +198,7 @@ class DailyListPage1 extends State<DailyListPage> {
                           background: Container(color: Colors.red),
                           child: SizedBox(
                             child: Card(
-                              color: _color ? Colors.green : Colors.red,
+                              color: _color ? Colors.blue : Colors.red,
                               child: ListTile(
                                 onTap: () {
                                   setState(() {
