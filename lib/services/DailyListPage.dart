@@ -213,7 +213,7 @@ class DailyListPage1 extends State<DailyListPage> {
                                       padding:
                                           const EdgeInsets.fromLTRB(0, 0, 0, 5),
                                       child: Text(
-                                        'Bhau Kadam',
+                                        '${ee.id}:${ee.customerName}',
                                         style: TextStyle(color: Colors.white),
                                       ),
                                     ),
@@ -221,7 +221,7 @@ class DailyListPage1 extends State<DailyListPage> {
                                       padding:
                                           const EdgeInsets.fromLTRB(0, 0, 0, 5),
                                       child: Text(
-                                        '9876543210',
+                                        '${ee.customerPhone}',
                                         style: TextStyle(color: Colors.white),
                                       ),
                                     ),
@@ -235,7 +235,7 @@ class DailyListPage1 extends State<DailyListPage> {
                                       padding:
                                           const EdgeInsets.fromLTRB(0, 5, 0, 0),
                                       child: Text(
-                                        '204, Ram Building, Lane No-6',
+                                        '${ee.customerAddress}:',
                                         style: TextStyle(color: Colors.white),
                                       ),
                                     ),
@@ -243,7 +243,7 @@ class DailyListPage1 extends State<DailyListPage> {
                                       padding:
                                           const EdgeInsets.fromLTRB(0, 5, 0, 0),
                                       child: Text(
-                                        '2L ',
+                                        '${ee.productName}: ',
                                         style: TextStyle(color: Colors.orange),
                                       ),
                                     ),
@@ -253,8 +253,8 @@ class DailyListPage1 extends State<DailyListPage> {
                             ),
                           ),
 ///////////////////////////////////////////////////////////////////////////////
-                          ///old cod for customr list
-/////
+                          ///old code for customr list
+////////////////////////////////////////////////////////////////////////
                           // child: Row(
                           //   mainAxisAlignment: MainAxisAlignment.center,
                           //   children: [
@@ -393,24 +393,6 @@ class DailyListPage1 extends State<DailyListPage> {
                           //   ],
                           // ),
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                          // Future<void> showAlertDialog () async {
-                          //   return showDialog(
-                          //     context: context,
-                          //     barrierDismissible: true,
-                          //     builder: (context) {
-                          //       return AlertDialog(
-                          //         title: Text("Alert"),
-                          //         content: Text("s"),
-                          //       )
-
-                          //     }
-
-                          //     ),
-                          // },
-
-                          //   ],
-                          // ),
-                          // ),
                         );
                       }),
                 ),

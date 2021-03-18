@@ -178,3 +178,4 @@ class _LoginPageState extends State<LoginPage> {
 
 // 9637618987
 // test5
+//flutter build apk --release

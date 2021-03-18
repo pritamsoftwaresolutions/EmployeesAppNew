@@ -4,8 +4,18 @@ class DailyDelivery {
   String customerId;
   String empId;
   String deliverydateTime;
-  String status;
+  String status = "Deliverd";
   String productId;
+  // String empName = "empName-w";
+  // String customerName = "cusName-w";
+  // String productName = "prodName-w";
+  // String customerContact = "cusContact-w";
+  // String customerAddress = "cusAddress-w";
+  String empName = "Santosh";
+  String customerName = "Bhau Kadam";
+  String productName = "Cow Milk";
+  String customerAddress = "204, Ram Building, Lane No-6";
+  String customerPhone = "9876543210";
 
   // DailyDelivery({this.id, this.routeDeliveryId, this.customerId, this.empId, this.deliverydateTime, this.status, this.productId});
   DailyDelivery(this.id, this.routeDeliveryId, this.customerId, this.empId,
