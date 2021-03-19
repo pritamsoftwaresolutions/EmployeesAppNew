@@ -9,13 +9,15 @@
 // import 'Services/DailyDeliveryList.dart';
 // import 'Entity/DailyDelivery.dart';
 
+// import 'package:employeesapp/Language.dart';
 import 'package:flutter/material.dart';
 // import 'List1.dart';
 // import 'package:http/http.dart' as http;
 // import 'dart:async';
 // import 'dart:convert';
 // import 'services/loginService.dart';
-import 'services/DailyListPage.dart';
+// import 'package:easy_localization/easy_localization.dart';
+import 'services/Navigation.dart';
 import 'RestServices/RestApiServices.dart';
 import 'Services/DailyDeliveryList.dart';
 // import 'Entity/DailyDelivery.dart';
@@ -52,10 +54,12 @@ class _LoginPageState extends State<LoginPage> {
   final passwordController = TextEditingController();
 
   final _formKey = GlobalKey<FormState>();
+  String error = '';
 
-  void loginCall() async {
+  Future<String> loginCall() async {
     String username1 = userNameController.text;
     String pwd = passwordController.text;
+
     print('VALID LOGIN  222 ');
 
     var flag = await RestApiServices().loginRestService(username1, pwd);
@@ -69,9 +73,18 @@ class _LoginPageState extends State<LoginPage> {
           context,
           MaterialPageRoute(
               builder: (context) =>
-                  DailyListPage(dailyDeliveryList5: dailyDeliveryList5)));
+                  // Navigation(dailyDeliveryList5: dailyDeliveryList5)));
+                  Navigation()));
+      return "true";
     } else {
-      print('INVALID LOGIN');
+      error = 'Could not sign in with those credentials';
+      return "false";
+
+      // Scaffold.of(context).showSnackBar(
+      //   SnackBar(
+      //     content: Text("INVALID LOGIN!"),
+      //   ),
+      // );
 
       //  print('call  444444');
     }
@@ -148,11 +161,16 @@ class _LoginPageState extends State<LoginPage> {
                               // Validate returns true if the form is valid, or false
                               // otherwise.
                               if (_formKey.currentState.validate()) {
-                                loginCall();
+                                var flag = loginCall();
+                                print(flag);
                               }
                             },
                             child: Text('Submit'),
-                          )
+                          ),
+                          Text(
+                            error,
+                            style: TextStyle(color: Colors.red, fontSize: 14.0),
+                          ),
 
                           /*  RaisedButton(
                         onPressed: () {
@@ -172,6 +190,9 @@ class _LoginPageState extends State<LoginPage> {
           ],
         ),
       ),
+/////////////////////////////////////////////////////////////////////////////////////////////
+
+      //////////////////////////////////////////////////////////////////////////////
     );
   }
 }
