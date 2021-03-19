@@ -35,9 +35,9 @@ class DailyListPage extends StatefulWidget {
 
 class DailyListPage1 extends State<DailyListPage> {
   bool _color;
-  final items = List<String>.generate(20, (i) => "Item ${i + 1}");
+ // final items = List<String>.generate(20, (i) => "Item ${i + 1}");
 
-//  final List<DailyDelivery> items = DailyListPage.dailyDeliveryList8.dailyDelivery;
+  final List<DailyDelivery> items = DailyListPage.dailyDeliveryList8.dailyDelivery;
   @override
   void initState() {
     super.initState();
@@ -224,9 +224,9 @@ class DailyListPage1 extends State<DailyListPage> {
                           return Dismissible(
                             // Each Dismissible must contain a Key. Keys allow Flutter to
                             // uniquely identify widgets.
-                            // key: Key(dd.empId),
+                             key: Key(ee.empId),
                             ///////////////////////////////key: Key(item),
-                            key: Key(item[index]),
+                         //   key: Key(item[index]),
                             // Provide a function that tells the app
                             // what to do after an item has been swiped away.
 
