@@ -38,10 +38,29 @@ class DailyListPage1 extends State<DailyListPage> {
  // final items = List<String>.generate(20, (i) => "Item ${i + 1}");
 
   final List<DailyDelivery> items = DailyListPage.dailyDeliveryList8.dailyDelivery;
+  int _currentIndex = 0;
   @override
   void initState() {
     super.initState();
     _color = true;
+  }
+
+  Widget callPage(int currentIndex) {
+    print('KKKKKKKK : ');
+    print(currentIndex);
+    switch (currentIndex) {
+      case 0:
+        return ToBeDeliver();
+      case 1:
+
+        return Delivered();
+      case 2:
+
+        return Holiday();
+        break;
+      default:
+        return ToBeDeliver();
+    }
   }
 
   @override
@@ -49,28 +68,17 @@ class DailyListPage1 extends State<DailyListPage> {
     final title = 'Dismissing Items';
     final title1 = 'Kalyani Nagar';
     final data = MediaQuery.of(context);
-    int _currentIndex = 0;
 
-    Widget callPage(int currentIndex) {
-      switch (currentIndex) {
-        case 0:
-          return ToBeDeliver();
-        case 1:
-          return Delivered();
-        case 2:
-          return Holiday();
-          break;
-        default:
-          return ToBeDeliver();
-      }
-    }
 
-    callPage(_currentIndex);
+
+
+
 
     print('in build ********* ');
     print(DailyListPage.dailyDeliveryList8.dailyDelivery.length);
+
     DailyListPage.dailyDeliveryList8.dailyDelivery
-        .forEach((l) => print("Employee #${l.id} has ${l.status} "));
+        .forEach((l) => print("Employee #${l.id} has ${l.customerName} "));
     Iterator<DailyDelivery> listIterator =
         DailyListPage.dailyDeliveryList8.dailyDelivery.iterator;
     return MaterialApp(
@@ -88,372 +96,7 @@ class DailyListPage1 extends State<DailyListPage> {
                   fontWeight: FontWeight.bold)),
         ),
         ////////////////////////////////////////////////////////////////////////
-        body: SafeArea(
-          child: Column(
-            children: [
-              SizedBox(
-                height: 65.0,
-                child: Container(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          children: [
-                            Padding(
-                                padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
-                                child: Icon(Icons.calendar_today)),
-                            Text(
-                              "19 March",
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                  fontSize: 15,
-                                  color: Colors.blue,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          children: [
-                            Padding(
-                                padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
-                                child: Icon(Icons.person)),
-                            Text(
-                              "100",
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                  fontSize: 15,
-                                  color: Colors.blue,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.all(0.0),
-                            child: Text(
-                              "1500L C ",
-                              // textAlign: TextAlign.center,
-                              style: TextStyle(
-                                  fontSize: 12.5,
-                                  color: Colors.orange,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(0.0),
-                            child: Padding(
-                              padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),
-                              child: Text(
-                                "500L B",
-                                // textAlign: TextAlign.center,
-                                style: TextStyle(
-                                    fontSize: 12.5,
-                                    color: Colors.indigo,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                      // SizedBox(
-                      //   width: 65.0,
-                      //   child: RaisedButton(
-                      //       child: Padding(
-                      //         padding: const EdgeInsets.all(0.0),
-                      //         child: Column(
-                      //           mainAxisAlignment: MainAxisAlignment.center,
-                      //           children: [
-                      //             Text(
-                      //               'ALL',
-                      //               textAlign: TextAlign.center,
-                      //               style: TextStyle(
-                      //                   fontSize: 10,
-                      //                   color: Colors.white,
-                      //                   fontWeight: FontWeight.bold),
-                      //             ),
-                      //           ],
-                      //         ),
-                      //       ),
-                      //       shape: RoundedRectangleBorder(
-                      //           borderRadius: BorderRadius.circular(10.0),
-                      //           side: BorderSide(color: Colors.lightBlue)),
-                      //       color: Colors.blue,
-                      //       onPressed: () {}),
-                      // ),
-                    ],
-                  ),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    border: Border.all(color: Colors.white),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey,
-                        blurRadius: 25,
-                      )
-                    ],
-                  ),
-                  // color: Colors.white,
-                ),
-              ),
-              SizedBox(
-                height: data.size.height / 50,
-              ),
-              Expanded(
-                child: SizedBox(
-                  child: Padding(
-                    padding: const EdgeInsets.all(2.0),
-                    child: ListView.builder(
-                        itemCount: DailyListPage
-                            .dailyDeliveryList8.dailyDelivery.length,
-                        // itemCount: items.length,
-                        itemBuilder: (context, index) {
-                          final item = items[index];
-                          //  DailyDelivery dd = items[index];
-
-                          listIterator.moveNext();
-                          DailyDelivery ee = listIterator.current;
-                          print(ee.status);
-                          return Dismissible(
-                            // Each Dismissible must contain a Key. Keys allow Flutter to
-                            // uniquely identify widgets.
-                             key: Key(ee.empId),
-                            ///////////////////////////////key: Key(item),
-                         //   key: Key(item[index]),
-                            // Provide a function that tells the app
-                            // what to do after an item has been swiped away.
-
-                            onDismissed: (direction) {
-                              // Remove the item from the data source.
-
-                              // Then show a snackbar.
-                              Scaffold.of(context).showSnackBar(
-                                SnackBar(
-                                  content: Text("Customer dismissed"),
-                                  // action: SnackBarAction(
-                                  //     label: "Undo",
-                                  //     onPressed: () {
-                                  //       _tasks.insert(index, item);
-                                  //       setState(() {});
-                                  //     })
-                                ),
-                              );
-                            },
-                            // Show a red background as the item is swiped away.
-                            background: Container(color: Colors.red),
-                            child: SizedBox(
-                              child: Card(
-                                color: _color ? Colors.blue : Colors.red,
-                                child: ListTile(
-                                  onTap: () {
-                                    setState(() {
-                                      _color = !_color;
-                                    });
-                                  },
-                                  title: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Padding(
-                                        padding: const EdgeInsets.fromLTRB(
-                                            0, 0, 0, 5),
-                                        child: Text(
-                                          '${ee.id}:${ee.customerName}',
-                                          style: TextStyle(color: Colors.white),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.fromLTRB(
-                                            0, 0, 0, 5),
-                                        child: Text(
-                                          '${ee.customerPhone}',
-                                          style: TextStyle(color: Colors.white),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  subtitle: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Padding(
-                                        padding: const EdgeInsets.fromLTRB(
-                                            0, 5, 0, 0),
-                                        child: Text(
-                                          '${ee.customerAddress}',
-                                          style: TextStyle(color: Colors.white),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.fromLTRB(
-                                            0, 5, 0, 0),
-                                        child: Text(
-                                          '${ee.productName} ',
-                                          style:
-                                              TextStyle(color: Colors.orange),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ),
-///////////////////////////////////////////////////////////////////////////////
-                            ///old code for customr list
-////////////////////////////////////////////////////////////////////////
-                            // child: Row(
-                            //   mainAxisAlignment: MainAxisAlignment.center,
-                            //   children: [
-                            //     new SizedBox(
-                            //       // width: data.size.width / 1.15,
-                            //       width: data.size.width / 1.02,
-                            //       height: data.size.height / 10.2,
-                            //       child: RaisedButton(
-                            //         onPressed: () {
-                            //           // Navigator.push(
-                            //           //     context,
-                            //           //     MaterialPageRoute(
-                            //           //         builder: (context) => Screen1()));
-                            //         },
-                            //         // child: Padding(
-                            //         //   padding: const EdgeInsets.all(0.0),
-                            //         //   child: Column(
-                            //         //     mainAxisAlignment:
-                            //         //         MainAxisAlignment.center,
-                            //         //     crossAxisAlignment:
-                            //         //         CrossAxisAlignment.stretch,
-                            //         //     children: [
-                            //         //       Padding(
-                            //         //         padding: const EdgeInsets.all(0.0),
-                            //         //         child: Row(
-                            //         //           mainAxisAlignment:
-                            //         //               MainAxisAlignment.spaceBetween,
-                            //         //           children: [
-                            //         //             Text('${ee.id}: Abhijit Kadam',
-                            //         //                 // '  : ${ee.id}  ',
-                            //         //                 style: TextStyle(
-                            //         //                     fontSize: 12.5,
-                            //         //                     color: Colors.blue,
-                            //         //                     fontWeight:
-                            //         //                         FontWeight.normal)),
-                            //         //             Text('9876543210',
-                            //         //                 style: TextStyle(
-                            //         //                     fontSize: 12.5,
-                            //         //                     color: Colors.blue,
-                            //         //                     fontWeight:
-                            //         //                         FontWeight.normal)),
-                            //         //           ],
-                            //         //         ),
-                            //         //       ),
-                            //         //       SizedBox(
-                            //         //         height: 18,
-                            //         //       ),
-                            //         //       Padding(
-                            //         //         padding: const EdgeInsets.all(0.0),
-                            //         //         child: Row(
-                            //         //           mainAxisAlignment:
-                            //         //               MainAxisAlignment.spaceBetween,
-                            //         //           children: [
-                            //         //             Text(
-                            //         //                 '${ee.routeDeliveryId}: 204, Tupe Buiding, D-6 Lane',
-                            //         //                 style: TextStyle(
-                            //         //                     fontSize: 12.5,
-                            //         //                     color: Colors.blue,
-                            //         //                     fontWeight:
-                            //         //                         FontWeight.normal)),
-                            //         //             Text('${ee.status}: 2L Cow',
-                            //         //                 style: TextStyle(
-                            //         //                     fontSize: 12.5,
-                            //         //                     color: Colors.orange,
-                            //         //                     fontWeight:
-                            //         //                         FontWeight.normal)),
-                            //         //           ],
-                            //         //         ),
-                            //         //       ),
-                            //         //     ],
-                            //         //   ),
-                            //         // ),
-
-                            //         color: Colors.white,
-                            //       ),
-                            //     ),
-                            //     // SizedBox(
-                            //     //   height: data.size.height / 10.2,
-                            //     //   width: 40,
-                            //     //   child: RaisedButton(
-                            //     //       child: Padding(
-                            //     //         padding: const EdgeInsets.all(0.0),
-                            //     //         child: Column(
-                            //     //           mainAxisAlignment:
-                            //     //               MainAxisAlignment.center,
-                            //     //           children: [
-                            //     //             Text(
-                            //     //               'D',
-                            //     //               textAlign: TextAlign.center,
-                            //     //               style: TextStyle(
-                            //     //                   fontSize: 10,
-                            //     //                   color: Colors.white,
-                            //     //                   fontWeight: FontWeight.bold),
-                            //     //             ),
-                            //     //           ],
-                            //     //         ),
-                            //     //       ),
-                            //     //       //  color: Colors.white,
-                            //     //       shape: RoundedRectangleBorder(
-                            //     //           // borderRadius: BorderRadius.circular(10.0),
-                            //     //           side: BorderSide(
-                            //     //               color: Colors.lightBlue)),
-                            //     //       color: Colors.blue,
-                            //     //       onPressed: () async {
-                            //     //         print('FIrst First');
-                            //     //         DailyDeliveryList dailyDeliveryList1 =
-                            //     //             await RestApiServices()
-                            //     //                 .getAllDailyDeliveryRest();
-
-                            //     //         print(77);
-                            //     //         dailyDeliveryList1.dailyDelivery.forEach(
-                            //     //             (l) => print(
-                            //     //                 "Employee #${l.id} has ${l.status} "));
-                            //     //         print(dailyDeliveryList1);
-                            //     //       }),
-                            //     // ),
-
-                            //     // SizedBox(
-                            //     //   width: 40,
-                            //     //   height: data.size.height / 10.2,
-                            //     //   child: RaisedButton(
-                            //     //     child: Text(
-                            //     //       "D",
-                            //     //       textAlign: TextAlign.center,
-                            //     //     ),
-                            //     //     color: Colors.white,
-                            //     //     highlightColor: Colors.green,
-                            //     //     onPressed: () {
-                            //     //       // Navigator.push(
-                            //     //       //     context,
-                            //     //       //     MaterialPageRoute(
-                            //     //       //         builder: (context) => Screen1()));
-                            //     //     },
-                            //     //   ),
-                            //     // ),
-                            //   ],
-                            // ),
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                          );
-                        }),
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
+        body:  callPage(_currentIndex),
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         bottomNavigationBar: BottomNavigationBar(

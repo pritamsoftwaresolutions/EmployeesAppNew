@@ -20,7 +20,7 @@ class RestApiServices {
   Future<DailyDeliveryList> getAllDailyDeliveryRest() async {
     print('IN getAllDailyDeliveryRest ');
     final response =
-        await http.get(getAllDailyDeliveryURL, headers: <String, String>{
+    await http.get(getAllDailyDeliveryURL, headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
     });
     print(response.statusCode);
@@ -30,17 +30,15 @@ class RestApiServices {
 
       print(DailyDeliveryListJson);
       DailyDeliveryList dailyDeliveryList =
-          DailyDeliveryList.fromJson(DailyDeliveryListJson);
+      DailyDeliveryList.fromJson(DailyDeliveryListJson);
 
       print(DailyDeliveryListJson);
       return dailyDeliveryList;
       /*  print("photos " + dailyDeliveryList.dailyDelivery[0].routeDeliveryId);
-
       if (dailyDeliveryList.dailyDelivery[0].status == 'Completed') {
         print('Completed');
         return true;
       }
-
     } else {
       return false;
     }
@@ -62,18 +60,20 @@ class RestApiServices {
     );
 
     if (response.statusCode == 200) {
-      String hh = response.body;
-      Map userMap = jsonDecode(hh);
-      User user = User.fromJson(userMap);
-      print('Howdy, ${user.firstName}!');
-
-      if (user.firstName == 'Daya') {
-        print('daya mil gaya hurrey');
-        return true;
+      String responseBody = response.body;
+      if(responseBody!=null) {
+        Map userMap = jsonDecode(responseBody);
+        if (userMap != null) {
+          User user = User.fromJson(userMap);
+          print('Howdy, ${user.firstName}!');
+          return true;
+        } else {
+          return false;
+        }
+      }else{
+        return false;
       }
 
-      //User user = User.fromJson(jsonEncode(response.body));
-      return true;
     } else {
       return false;
     }

@@ -10,7 +10,6 @@
 // import 'Entity/DailyDelivery.dart';
 
 // import 'package:employeesapp/Language.dart';
-import 'package:employeesapp/services/DailyListPage.dart';
 import 'package:flutter/material.dart';
 // import 'List1.dart';
 // import 'package:http/http.dart' as http;
@@ -18,6 +17,7 @@ import 'package:flutter/material.dart';
 // import 'dart:convert';
 // import 'services/loginService.dart';
 // import 'package:easy_localization/easy_localization.dart';
+import 'services/Delivered.dart';
 import 'services/DailyListPage.dart';
 import 'RestServices/RestApiServices.dart';
 import 'Services/DailyDeliveryList.dart';
@@ -51,6 +51,7 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   String _username, _password;
   final userNameController = TextEditingController();
+  DailyDeliveryList dailyDeliveryList5 = null;
 
   final passwordController = TextEditingController();
 
@@ -61,33 +62,32 @@ class _LoginPageState extends State<LoginPage> {
     String username1 = userNameController.text;
     String pwd = passwordController.text;
 
-    print('VALID LOGIN  222 ');
+
 
     var flag = await RestApiServices().loginRestService(username1, pwd);
-    DailyDeliveryList dailyDeliveryList5 =
-        await RestApiServices().getAllDailyDeliveryRest();
-    print('VALID LOGIN  333 ');
-    print(dailyDeliveryList5.dailyDelivery.length);
+
+
+
     if (flag == true) {
-      print('VALID LOGIN');
+      print(' LOGIN Succesfull');
+      dailyDeliveryList5 =
+      await RestApiServices().getAllDailyDeliveryRest();
+      print(dailyDeliveryList5.dailyDelivery.length);
       Navigator.push(
           context,
           MaterialPageRoute(
               builder: (context) =>
-                  DailyListPage(dailyDeliveryList5: dailyDeliveryList5)));
-      // Navigation()));
+              // Delivered(dailyDeliveryList5: dailyDeliveryList5)));
+              DailyListPage(dailyDeliveryList5: dailyDeliveryList5)));
+      //Navigation()));
+      //Navigation()));
       return "true";
     } else {
+      print(' LOGIN Not Succesfull');
       error = 'Could not sign in with those credentials';
       return "false";
 
-      // Scaffold.of(context).showSnackBar(
-      //   SnackBar(
-      //     content: Text("INVALID LOGIN!"),
-      //   ),
-      // );
 
-      //  print('call  444444');
     }
   }
 
@@ -176,8 +176,6 @@ class _LoginPageState extends State<LoginPage> {
                           /*  RaisedButton(
                         onPressed: () {
                            call();
-
-
                         },
                         child: Text('Sign In'),
                         color: Colors.white,
@@ -192,7 +190,6 @@ class _LoginPageState extends State<LoginPage> {
         ),
       ),
 /////////////////////////////////////////////////////////////////////////////////////////////
-
       //////////////////////////////////////////////////////////////////////////////
     );
   }
