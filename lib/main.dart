@@ -10,6 +10,7 @@
 // import 'Entity/DailyDelivery.dart';
 
 // import 'package:employeesapp/Language.dart';
+import 'package:employeesapp/services/DailyListPage.dart';
 import 'package:flutter/material.dart';
 // import 'List1.dart';
 // import 'package:http/http.dart' as http;
@@ -17,7 +18,7 @@ import 'package:flutter/material.dart';
 // import 'dart:convert';
 // import 'services/loginService.dart';
 // import 'package:easy_localization/easy_localization.dart';
-import 'services/Navigation.dart';
+import 'services/DailyListPage.dart';
 import 'RestServices/RestApiServices.dart';
 import 'Services/DailyDeliveryList.dart';
 // import 'Entity/DailyDelivery.dart';
@@ -73,8 +74,8 @@ class _LoginPageState extends State<LoginPage> {
           context,
           MaterialPageRoute(
               builder: (context) =>
-                  // Navigation(dailyDeliveryList5: dailyDeliveryList5)));
-                  Navigation()));
+                  DailyListPage(dailyDeliveryList5: dailyDeliveryList5)));
+      // Navigation()));
       return "true";
     } else {
       error = 'Could not sign in with those credentials';
