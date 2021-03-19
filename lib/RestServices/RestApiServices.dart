@@ -62,18 +62,20 @@ class RestApiServices {
     );
 
     if (response.statusCode == 200) {
-      String hh = response.body;
-      Map userMap = jsonDecode(hh);
-      User user = User.fromJson(userMap);
-      print('Howdy, ${user.firstName}!');
-
-      if (user.firstName == 'Daya') {
-        print('daya mil gaya hurrey');
-        return true;
+      String responseBody = response.body;
+      if(responseBody!=null) {
+        Map userMap = jsonDecode(responseBody);
+        if (userMap != null) {
+          User user = User.fromJson(userMap);
+          print('Howdy, ${user.firstName}!');
+          return true;
+        } else {
+          return false;
+        }
+      }else{
+        return false;
       }
 
-      //User user = User.fromJson(jsonEncode(response.body));
-      return true;
     } else {
       return false;
     }
