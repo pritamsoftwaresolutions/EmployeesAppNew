@@ -22,12 +22,15 @@ import 'services/DailyListPage.dart';
 import 'RestServices/RestApiServices.dart';
 import 'Services/DailyDeliveryList.dart';
 // import 'Entity/DailyDelivery.dart';
+import 'resources/Utility.dart';
 
 void main() {
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
+
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -49,9 +52,12 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+
   String _username, _password;
   final userNameController = TextEditingController();
   DailyDeliveryList dailyDeliveryList5 = null;
+
+  DailyDeliveryList vacationList = null;
 
   final passwordController = TextEditingController();
 
@@ -64,21 +70,30 @@ class _LoginPageState extends State<LoginPage> {
 
 
 
-    var flag = await RestApiServices().loginRestService(username1, pwd);
+    var flag = await RestApiServices().loginRestService(username1, pwd,Utility.dummy);
 
 
 
     if (flag == true) {
       print(' LOGIN Succesfull');
       dailyDeliveryList5 =
-      await RestApiServices().getAllDailyDeliveryRest();
+      await RestApiServices().getAllDailyDeliveryRest(Utility.dummy);
       print(dailyDeliveryList5.dailyDelivery.length);
+      DailyListPage.dailyDeliveryList8 = dailyDeliveryList5;
+
+
+      vacationList =
+      await RestApiServices().vacationList(Utility.dummy);
+      print(vacationList.dailyDelivery.length);
+      DailyListPage.vacationList8 = vacationList;
+
       Navigator.push(
           context,
           MaterialPageRoute(
               builder: (context) =>
               // Delivered(dailyDeliveryList5: dailyDeliveryList5)));
-              DailyListPage(dailyDeliveryList5: dailyDeliveryList5)));
+          //    DailyListPage(dailyDeliveryList5: dailyDeliveryList5)));
+              DailyListPage()));
       //Navigation()));
       //Navigation()));
       return "true";

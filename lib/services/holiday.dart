@@ -11,13 +11,13 @@ class Holiday extends StatelessWidget {
   // final items = List<String>.generate(20, (i) => "Item ${i + 1}");
   bool     _color = true;
 
-  final List<DailyDelivery> items = DailyListPage.dailyDeliveryList8.dailyDelivery;
+  final List<DailyDelivery> items = DailyListPage.vacationList8.dailyDelivery;
 
   @override
   Widget build(BuildContext context) {
 
     Iterator<DailyDelivery> listIterator =
-        DailyListPage.dailyDeliveryList8.dailyDelivery.iterator;
+        DailyListPage.vacationList8.dailyDelivery.iterator;
     final data = MediaQuery.of(context);
     return SafeArea(
       child: Column(
@@ -36,7 +36,7 @@ class Holiday extends StatelessWidget {
                             padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
                             child: Icon(Icons.calendar_today)),
                         Text(
-                          "Holiday",
+                          "19 March",
                           textAlign: TextAlign.center,
                           style: TextStyle(
                               fontSize: 15,
@@ -54,7 +54,7 @@ class Holiday extends StatelessWidget {
                             padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
                             child: Icon(Icons.person)),
                         Text(
-                          "100",
+                          items.length.toString(),
                           textAlign: TextAlign.center,
                           style: TextStyle(
                               fontSize: 15,
@@ -119,7 +119,7 @@ class Holiday extends StatelessWidget {
                 padding: const EdgeInsets.all(2.0),
                 child: ListView.builder(
                     itemCount: items.length,
-                    //   itemCount:DailyListPage.dailyDeliveryList8.dailyDelivery.length,
+
                     itemBuilder: (context, index) {
                       final item = items[index];
 
@@ -163,7 +163,7 @@ class Holiday extends StatelessWidget {
                         background: Container(color: Colors.red),
                         child: SizedBox(
                           child: Card(
-                            color: _color ? Colors.blue : Colors.red,
+                            color: _color ? Colors.blueGrey : Colors.red,
                             child: ListTile(
                               onTap: () {
 
@@ -176,7 +176,7 @@ class Holiday extends StatelessWidget {
                                     padding: const EdgeInsets.fromLTRB(
                                         0, 0, 0, 5),
                                     child: Text(
-                                      '${ee.id}:${ee.customerName}',
+                                      '${ee.customerId}:${ee.customerName}',
                                       style: TextStyle(color: Colors.white),
                                     ),
                                   ),
@@ -184,7 +184,7 @@ class Holiday extends StatelessWidget {
                                     padding: const EdgeInsets.fromLTRB(
                                         0, 0, 0, 5),
                                     child: Text(
-                                      'Hello',
+                                      '${ee.customerPhone}',
                                       style: TextStyle(color: Colors.white),
                                     ),
                                   ),
@@ -198,7 +198,7 @@ class Holiday extends StatelessWidget {
                                     padding: const EdgeInsets.fromLTRB(
                                         0, 5, 0, 0),
                                     child: Text(
-                                      'Hello',
+                                      '${ee.customerAddress}',
                                       style: TextStyle(color: Colors.white),
                                     ),
                                   ),
@@ -206,7 +206,7 @@ class Holiday extends StatelessWidget {
                                     padding: const EdgeInsets.fromLTRB(
                                         0, 5, 0, 0),
                                     child: Text(
-                                      'Hello',
+                                      '${ee.productName}',
                                       style:
                                       TextStyle(color: Colors.orange),
                                     ),

@@ -7,13 +7,16 @@ class ToBeDeliver extends StatelessWidget {
   // final items = List<String>.generate(20, (i) => "Item ${i + 1}");
    bool     _color = true;
 
+
    final List<DailyDelivery> items = DailyListPage.dailyDeliveryList8.dailyDelivery;
 
+   int listLength = 0;
   @override
   Widget build(BuildContext context) {
 
     Iterator<DailyDelivery> listIterator =
         DailyListPage.dailyDeliveryList8.dailyDelivery.iterator;
+    listLength = items.length;
     final data = MediaQuery.of(context);
     return SafeArea(
       child: Column(
@@ -50,7 +53,7 @@ class ToBeDeliver extends StatelessWidget {
                             padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
                             child: Icon(Icons.person)),
                         Text(
-                          "100",
+                          items.length.toString(),
                           textAlign: TextAlign.center,
                           style: TextStyle(
                               fontSize: 15,
@@ -113,6 +116,7 @@ class ToBeDeliver extends StatelessWidget {
             child: SizedBox(
               child: Padding(
                 padding: const EdgeInsets.all(2.0),
+
                 child: ListView.builder(
                     itemCount: items.length,
                   //   itemCount:DailyListPage.dailyDeliveryList8.dailyDelivery.length,
@@ -122,18 +126,20 @@ class ToBeDeliver extends StatelessWidget {
 
 
                       listIterator.moveNext();
-                      DailyDelivery ee = listIterator.current;
+                      DailyDelivery dailydeliveryentity = listIterator.current;
+
+                      DailyDelivery delivered ;
 
 
-                      if(ee==null){
+                      if(dailydeliveryentity==null){
                         return null;;
                       }
 
-                      print(ee.customerName);
+                      print(dailydeliveryentity.customerName);
                         return Dismissible(
 // Each Dismissible must contain a Key. Keys allow Flutter to
 // uniquely identify widgets.
-                          key: Key(ee.customerName),
+                          key: Key(dailydeliveryentity.customerName),
 ///////////////////////////////key: Key(item),
 //   key: Key(item[index]),
 // Provide a function that tells the app
@@ -141,6 +147,27 @@ class ToBeDeliver extends StatelessWidget {
 
                           onDismissed: (direction) {
 // Remove the item from the data source.
+              print(dailydeliveryentity.id);
+              delivered = dailydeliveryentity;
+
+              print('AAAAAAAAAAAAAAAAAAAAAAAAA  T');
+              print(DailyListPage.dailyDeliveryList8.dailyDelivery.length);
+
+              DailyListPage.dailyDeliveryList8.dailyDelivery.remove(dailydeliveryentity);
+
+              print(DailyListPage.dailyDeliveryList8.dailyDelivery.length);
+              print('AAAAAAAAAAAAAAAAAAAAAAAAA T');
+
+              print('BBBBBBBBBBBBBBBBBBBBBBBBB');
+              print(DailyListPage.deliveredList.deliveredList.length);
+              print(delivered.id );
+              print(delivered.customerName);
+
+              DailyListPage.deliveredList.deliveredList.add(delivered);
+              print(DailyListPage.deliveredList.deliveredList.length);
+
+              print('BBBBBBBBBBBBBBBBBBBBBBBBB L');
+              listLength = listLength-1;
 
 // Then show a snackbar.
                             Scaffold.of(context).showSnackBar(
@@ -172,7 +199,7 @@ class ToBeDeliver extends StatelessWidget {
                                       padding: const EdgeInsets.fromLTRB(
                                           0, 0, 0, 5),
                                       child: Text(
-                                       '${ee.id}:${ee.customerName}',
+                                       '${dailydeliveryentity.id}:${dailydeliveryentity.customerName}',
                                         style: TextStyle(color: Colors.white),
                                       ),
                                     ),
@@ -180,7 +207,7 @@ class ToBeDeliver extends StatelessWidget {
                                       padding: const EdgeInsets.fromLTRB(
                                           0, 0, 0, 5),
                                       child: Text(
-                                        'Hello',
+                                        '${dailydeliveryentity.customerPhone}',
                                         style: TextStyle(color: Colors.white),
                                       ),
                                     ),
@@ -194,7 +221,7 @@ class ToBeDeliver extends StatelessWidget {
                                       padding: const EdgeInsets.fromLTRB(
                                           0, 5, 0, 0),
                                       child: Text(
-                                        'Hello',
+                                        '${dailydeliveryentity.customerAddress}',
                                         style: TextStyle(color: Colors.white),
                                       ),
                                     ),
@@ -202,7 +229,7 @@ class ToBeDeliver extends StatelessWidget {
                                       padding: const EdgeInsets.fromLTRB(
                                           0, 5, 0, 0),
                                       child: Text(
-                                        'Hello',
+                                        '${dailydeliveryentity.productName}',
                                         style:
                                         TextStyle(color: Colors.orange),
                                       ),

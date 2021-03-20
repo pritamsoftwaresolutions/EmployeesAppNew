@@ -1,4 +1,6 @@
 // import 'package:employeesapp/services/DailyListPage.dart';
+import 'DailyDeliveryList.dart';
+
 
 import 'package:employeesapp/main.dart';
 import 'package:flutter/material.dart';
@@ -8,19 +10,39 @@ import 'holiday.dart';
 import 'MyAccount.dart';
 import 'History.dart';
 
+import '../RestServices/RestApiServices.dart';
+
+
+
 class Navigation extends StatefulWidget {
+
+
+
+//  Navigation({this.dailyDeliveryList5});
+
   @override
-  _NavigationState createState() => _NavigationState();
+  _NavigationState createState() {
+    return _NavigationState();
+  }
+
+
 }
 
 class _NavigationState extends State<Navigation> {
   int _currentIndex = 0;
 
-  var dailyDeliveryList5;
+
+
+
+
+
+
+
   Widget callPage(int currentIndex) {
     switch (currentIndex) {
       case 0:
-        return ToBeDeliver();
+
+        return null;
       case 1:
         return Delivered();
       case 2:

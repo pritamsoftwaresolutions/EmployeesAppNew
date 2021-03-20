@@ -13,21 +13,32 @@ import '../RestServices/RestApiServices.dart';
 import '../Services/DailyDeliveryList.dart';
 import '../Entity/DailyDelivery.dart';
 // import '../services/DoneDelivery.dart';
+import '../Entity/DeliveredList.dart';
 
 class DailyListPage extends StatefulWidget {
   //final items = List<String>.generate(20, (i) => "Item ${i + 1}");
 
-  final DailyDeliveryList dailyDeliveryList5;
-
   static DailyDeliveryList dailyDeliveryList8;
+  static DailyDeliveryList vacationList8;
 
-  DailyListPage({this.dailyDeliveryList5});
+  //static DailyDeliveryList dailyDeliveryList8;
+
+  static DeliveredList deliveredList = new DeliveredList();
+
+
+//  DailyListPage({this.dailyDeliveryList8});
 
   //DailyListPage({Key key}) : super(key: key);
 
   @override
   DailyListPage1 createState() {
-    dailyDeliveryList8 = this.dailyDeliveryList5;
+    //dailyDeliveryList8 = this.dailyDeliveryList5;
+    deliveredList.deliveredList = new List<DailyDelivery>();
+    print('xxxxxxxx');
+    print(deliveredList);
+    print(deliveredList.deliveredList.length);
+    print('xxxxxxxx');
+
     print(DailyListPage.dailyDeliveryList8.dailyDelivery.length);
     return DailyListPage1();
   }

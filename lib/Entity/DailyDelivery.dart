@@ -6,20 +6,28 @@ class DailyDelivery {
   String deliverydateTime;
   String status = "Deliverd";
   String productId;
-  // String empName = "empName-w";
-  // String customerName = "cusName-w";
-  // String productName = "prodName-w";
-  // String customerContact = "cusContact-w";
-  // String customerAddress = "cusAddress-w";
-  String empName = "Santosh";
+
+ /* String empName = "Santosh";
   String customerName = "Bhau Kadam";
   String productName = "Cow Milk";
   String customerAddress = "204, Ram Building, Lane No-6";
-  String customerPhone = "9876543210";
+  String customerPhone = "9876543210";*/
 
-  // DailyDelivery({this.id, this.routeDeliveryId, this.customerId, this.empId, this.deliverydateTime, this.status, this.productId});
+  String empName ;
+  String customerName ;
+  String productName ;
+  String customerAddress ;
+  String customerPhone;
+
+
+
   DailyDelivery(this.id, this.routeDeliveryId, this.customerId, this.empId,
-      this.deliverydateTime, this.status, this.productId);
+      this.deliverydateTime, this.status, this.productId,
+      this.empName, this.customerName, this.productName, this.customerAddress,this.customerPhone);
+
+//  {"id":1,"routeDeliveryId":"1","customerId":"1","empId":"1","deliverydateTime":null,"status":null,"productId":"1",
+ // "empName":"Santosh","customerName":"Bhau Kadam","productName":"Cow Milk","customerAddress":"204, Ram Building, Lane No-6","customerPhone":"9876543210"},
+
 
   // DailyDelivery({this.status});
 
@@ -27,6 +35,16 @@ class DailyDelivery {
     print('In DailyDelivery class ');
 
     // return DailyDelivery(json['status'] as String, json['id'] as int);
+
+ /*   return DailyDelivery(
+      json['id'],
+      json['routeDeliveryId'] as String,
+      json['customerId'] as String,
+      json['empId'] as String,
+      json['deliverydateTime'] as String,
+      json['status'] as String,
+      json['productId'] as String,
+    ); */
 
     return DailyDelivery(
       json['id'],
@@ -36,7 +54,16 @@ class DailyDelivery {
       json['deliverydateTime'] as String,
       json['status'] as String,
       json['productId'] as String,
+
+      json['empName'] as String,
+      json['customerName'] as String,
+      json['productName'] as String,
+      json['customerAddress'] as String,
+      json['customerPhone'] as String,
     );
+
+
+
   }
 
   /*factory DailyDelivery.fromJson(Map<String, dynamic> json){

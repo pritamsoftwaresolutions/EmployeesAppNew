@@ -12,14 +12,19 @@ class Delivered extends StatelessWidget {
   // final items = List<String>.generate(20, (i) => "Item ${i + 1}");
   bool     _color = true;
 
-  final List<DailyDelivery> items = DailyListPage.dailyDeliveryList8.dailyDelivery;
+  //final List<DailyDelivery> items = DailyListPage.dailyDeliveryList8.dailyDelivery;
+
+  final List<DailyDelivery> items = DailyListPage.deliveredList.deliveredList;
+
+  int listLength = 0;
 
   @override
   Widget build(BuildContext context) {
 
     Iterator<DailyDelivery> listIterator =
-        DailyListPage.dailyDeliveryList8.dailyDelivery.iterator;
+        DailyListPage.deliveredList.deliveredList.iterator;
     final data = MediaQuery.of(context);
+    listLength = items.length;
     return SafeArea(
       child: Column(
         children: [
@@ -37,7 +42,7 @@ class Delivered extends StatelessWidget {
                             padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
                             child: Icon(Icons.calendar_today)),
                         Text(
-                          "Delivered",
+                          "19 March",
                           textAlign: TextAlign.center,
                           style: TextStyle(
                               fontSize: 15,
@@ -55,7 +60,7 @@ class Delivered extends StatelessWidget {
                             padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
                             child: Icon(Icons.person)),
                         Text(
-                          "100",
+                          items.length.toString(),
                           textAlign: TextAlign.center,
                           style: TextStyle(
                               fontSize: 15,
@@ -127,18 +132,20 @@ class Delivered extends StatelessWidget {
 
 
                       listIterator.moveNext();
-                      DailyDelivery ee = listIterator.current;
+                      DailyDelivery deliveredEntity = listIterator.current;
+
+                      DailyDelivery dailydeliveryentity1;
 
 
-                      if(ee==null){
+                      if(deliveredEntity==null){
                         return null;;
                       }
 
-                      print(ee.customerName);
+                      print(deliveredEntity.customerName);
                       return Dismissible(
 // Each Dismissible must contain a Key. Keys allow Flutter to
 // uniquely identify widgets.
-                        key: Key(ee.customerName),
+                        key: Key(deliveredEntity.customerName),
 ///////////////////////////////key: Key(item),
 //   key: Key(item[index]),
 // Provide a function that tells the app
@@ -146,6 +153,32 @@ class Delivered extends StatelessWidget {
 
                         onDismissed: (direction) {
 // Remove the item from the data source.
+
+
+
+
+                          print(deliveredEntity.id);
+                          dailydeliveryentity1 = deliveredEntity;
+
+                          print('DDDDDDDDDDDDDD  T');
+                          print(DailyListPage.deliveredList.deliveredList.length);
+
+                          DailyListPage.deliveredList.deliveredList.remove(deliveredEntity);
+
+                          print(DailyListPage.deliveredList.deliveredList.length);
+                          print('DDDDDDDDDDDDDD T');
+
+                          print('EEEEEEEEEEE L');
+                          print(DailyListPage.dailyDeliveryList8.dailyDelivery.length);
+                          print(dailydeliveryentity1.id );
+                          print(dailydeliveryentity1.customerName);
+
+                          DailyListPage.dailyDeliveryList8.dailyDelivery.add(dailydeliveryentity1);
+                          print(DailyListPage.dailyDeliveryList8.dailyDelivery.length);
+
+                          print('EEEEEEEEEEE L');
+                          listLength = listLength-1;
+
 
 // Then show a snackbar.
                           Scaffold.of(context).showSnackBar(
@@ -164,7 +197,7 @@ class Delivered extends StatelessWidget {
                         background: Container(color: Colors.red),
                         child: SizedBox(
                           child: Card(
-                            color: _color ? Colors.blue : Colors.red,
+                            color: _color ? Colors.green : Colors.red,
                             child: ListTile(
                               onTap: () {
 
@@ -177,7 +210,7 @@ class Delivered extends StatelessWidget {
                                     padding: const EdgeInsets.fromLTRB(
                                         0, 0, 0, 5),
                                     child: Text(
-                                      '${ee.id}:${ee.customerName}',
+                                      '${deliveredEntity.id}:${deliveredEntity.customerName}',
                                       style: TextStyle(color: Colors.white),
                                     ),
                                   ),
@@ -185,7 +218,7 @@ class Delivered extends StatelessWidget {
                                     padding: const EdgeInsets.fromLTRB(
                                         0, 0, 0, 5),
                                     child: Text(
-                                      'Hello',
+                                      '${deliveredEntity.customerPhone}',
                                       style: TextStyle(color: Colors.white),
                                     ),
                                   ),
@@ -199,7 +232,7 @@ class Delivered extends StatelessWidget {
                                     padding: const EdgeInsets.fromLTRB(
                                         0, 5, 0, 0),
                                     child: Text(
-                                      'Hello',
+                                      '${deliveredEntity.customerAddress}',
                                       style: TextStyle(color: Colors.white),
                                     ),
                                   ),
@@ -207,7 +240,7 @@ class Delivered extends StatelessWidget {
                                     padding: const EdgeInsets.fromLTRB(
                                         0, 5, 0, 0),
                                     child: Text(
-                                      'Hello',
+                                      '${deliveredEntity.productName}',
                                       style:
                                       TextStyle(color: Colors.orange),
                                     ),
